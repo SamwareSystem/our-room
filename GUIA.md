@@ -34,3 +34,9 @@ Edita el archivo en GitHub (icono del lápiz) → Commit. Se actualiza solo en ~
 - Si responde "No" a "¿Hay algo que me quiera contar?", se ocultan periodo, relato, sentimiento, puntaje y latidos (los latidos dependen del periodo). Si responde "No" a "¿Ya comió?" o "¿Ya tomó agua?", se ocultan sus preguntas de seguimiento.
 - Los latidos se ofrecen como 5 rangos (60–100 pulsaciones/min × duración del periodo).
 - El código usa JSDoc con `// @ts-check` para tipado estricto sin necesitar compilar nada.
+
+## Música de fondo
+1. Copia tus canciones (.mp3, .m4a, .ogg…) dentro de la carpeta `musica/`.
+2. Ejecuta `python3 generar-lista.py` (actualiza `musica/lista.js`). Sin Python, edita ese archivo a mano: `window.CANCIONES = ["cancion1.mp3","cancion2.mp3"];`
+3. Sube la carpeta `musica/` a GitHub junto al resto.
+Suena una canción aleatoria al 50 % de volumen y, al terminar, otra distinta. Los navegadores bloquean audio automático, así que si no arranca al abrir, empieza con el primer toque en la página. Hay un botón 🔊 abajo a la derecha para silenciar.

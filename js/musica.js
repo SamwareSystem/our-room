@@ -7,7 +7,20 @@
   const songs = /** @type {any} */ (window).CANCIONES || [];
   if (!songs.length) return;
   const audio = new Audio();
-  audio.volume = VOLUME;
+  audio.volume = 0;
+  const FADE_MS = 5000;
+  let fadeTimer = 0;
+  /** Sube el volumen de 0 a 50 % de forma gradual. */
+  function fadeIn() {
+    window.clearInterval(fadeTimer);
+    audio.volume = 0;
+    const t0 = performance.now();
+    fadeTimer = window.setInterval(() => {
+      const k = Math.min((performance.now() - t0) / FADE_MS, 1);
+      audio.volume = VOLUME * k * k; // curva suave: arranca casi imperceptible
+      if (k >= 1) window.clearInterval(fadeTimer);
+    }, 50);
+  }
   audio.preload = "auto";
   let last = -1, started = false, muted = false;
 
@@ -19,7 +32,8 @@
   }
   function next() {
     audio.src = "musica/" + encodeURIComponent(songs[pick()]);
-    return audio.play();
+    audio.volume = 0;
+    return audio.play().then(fadeIn);
   }
   audio.addEventListener("ended", () => { next().catch(() => {}); });
   audio.addEventListener("error", () => { if (songs.length > 1) setTimeout(() => next().catch(() => {}), 500); });
