@@ -104,10 +104,10 @@ function showKiss(yes) {
   window.clearTimeout(kissTimer);
   kiss.hidden = false;
   rain();
-  const done = "MWAHHH 💋";
+  const done = "MWAHHH 😽💕";
   if (yes) kissText.textContent = done;
   else {
-    kissText.textContent = "Igual se lo voy a dar 😌";
+    kissText.textContent = "Igual se lo voy a dar 🫸🏼";
     kissTimer = window.setTimeout(() => { kissText.textContent = done; }, 2200);
   }
   el("#kissClose").focus();
